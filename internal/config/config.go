@@ -8,6 +8,7 @@ import (
 type Config struct {
 	DbUrl           string `json:"db_url"`
 	CurrentUserName string `json:"current_user_name"`
+	ConnectString   string `json:"connect_string"`
 }
 
 func Read() (Config, error) {
@@ -27,22 +28,22 @@ func Read() (Config, error) {
 	return conf, nil
 }
 
-func (cnf *Config) SetUser(name string) error {
-	cnf.CurrentUserName = name
-	writeConfig(cnf)
+func (conf *Config) SetUser(name string) error {
+	conf.CurrentUserName = name
+	writeConfig(conf)
 	return nil
 }
 
-func writeConfig(cfg *Config) error {
-	byteData, err := json.Marshal(cfg)
+func writeConfig(conf *Config) error {
+	byteData, err := json.Marshal(conf)
 	if err != nil {
 		return err
 	}
-	cfgPath, err := getConfigPath()
+	confPath, err := getConfigPath()
 	if err != nil {
 		return err
 	}
-	err = os.WriteFile(cfgPath, byteData, 0666)
+	err = os.WriteFile(confPath, byteData, 0666)
 	return err
 }
 
