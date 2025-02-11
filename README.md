@@ -1,4 +1,4 @@
-Gator Setup Guide
+Project Setup Guide
 
 This document provides step-by-step instructions to set up PostgreSQL, install necessary dependencies, and run database migrations for this project.
 
@@ -63,6 +63,32 @@ Run the following command to generate the SQLC Go package:
 
 sqlc generate
 
+9. Commands Overview
+
+The application provides a command-line interface to interact with users, feeds, and posts. Below are the available commands:
+
+login [username] - Logs in as the specified user.
+
+register [username] - Registers a new user.
+
+reset - Resets all user data.
+
+users - Lists all registered users.
+
+agg [interval] - Fetches feeds at the specified interval.
+
+addfeed [name] [url] - Adds a new feed.
+
+feeds - Lists all available feeds.
+
+follow [feed_url] - Follows a specific feed.
+
+following - Lists feeds the user is following.
+
+unfollow [feed_url] - Unfollows a specific feed.
+
+browse - Displays posts from followed feeds.
+
 Notes
 
 Ensure your PostgreSQL service is running before running migrations.
@@ -78,3 +104,4 @@ If PostgreSQL fails to start, check the logs:
 sudo systemctl status postgresql
 
 If psql command is not found, ensure PostgreSQL is installed and added to your PATH.
+
